@@ -1,5 +1,5 @@
-import express, { Request, Response } from 'express';
-import Book from '../models/bookModel.js';
+import express from 'express';
+import Book from '../models/bookModel.ts';
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 // route for saving a new book
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req, res) => {
     try {
         // if no given information
         if (!req.body.title ||
@@ -42,7 +42,7 @@ router.post('/', async (req: Request, res: Response) => {
 })
 
 // route for get all books from database
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (req, res) => {
     try {
         const books = await Book.find({});
         return res.status(200).json({
@@ -60,7 +60,7 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // route for get specific book from database
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -85,7 +85,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 // route for update a book
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', async (req, res) => {
     try {
         if (
             !req.body.title ||
@@ -119,7 +119,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 });
 
 // route for delete a book
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const result = await Book.findByIdAndDelete(id);
