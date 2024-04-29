@@ -11,7 +11,7 @@ type Book = {
 }
 
 type Props = {
-    books: Book[] ;
+    books: Record<string, Book>;
 }
 
 const BookTable: React.FC<Props> = ({ books }) => {
@@ -27,7 +27,7 @@ const BookTable: React.FC<Props> = ({ books }) => {
                 </tr>
             </thead>
             <tbody>
-                {books.map((book, index) => (
+                {books && Object.values(books).map((book, index) => (
                     <tr key={book._id} className="h-8">
                         <td className="border border-slate-700 rounded-md text-center">
                         { index + 1 }

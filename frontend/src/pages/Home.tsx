@@ -8,8 +8,15 @@ import Spinner from "../components/Spinner";
 import BookTable from "../components/home/BookTable";
 import BookCard from "../components/home/BookCard";
 
+type Book = {
+  _id: string;
+  title: string;
+  author: string;
+  publishYear: number;
+}
+
 const Home = () => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Record<string, Book> | {}>({});
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
 
